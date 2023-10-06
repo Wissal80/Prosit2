@@ -4,21 +4,23 @@ public class Zoo {
     Animal[] animals;
     String name;
     String city;
-    int nbrCages;
+    private final int NBR_CAGES;
+
     int nbrAnimal = 0;
 
     public Zoo(String name, String city, int nbrCages) {
         this.name = name;
         this.city = city;
-        this.nbrCages = nbrCages;
-        this.animals = new Animal[nbrCages];
+        NBR_CAGES = nbrCages;
+
+        this.animals = new Animal[NBR_CAGES];
 
 
     }
 
 
     public void DisplayZoo() {
-        System.out.println("My Zoo name is:" + name + ",city is :" + city + "nmbr:" + nbrCages);
+        System.out.println("My Zoo name is:" + name + ",city is :" + city + "nmbr:" + NBR_CAGES);
 
     }
 
@@ -28,12 +30,12 @@ public class Zoo {
                 "animals=" + Arrays.toString(animals) +
                 ", name='" + name + '\'' +
                 ", city='" + city + '\'' +
-                ", nbrCages=" + nbrCages +
+                ", nbrCages=" + NBR_CAGES +
                 '}';
     }
 
     public Boolean addAnimal(Animal animal) {
-        if (nbrAnimal > nbrCages) {
+        if (nbrAnimal > NBR_CAGES) {
             return false;
         }
         animals[nbrAnimal] = animal;
@@ -41,9 +43,9 @@ public class Zoo {
         return true;
     }
 
-    public int searchAnimal(Animal animalToFind) {
+    public int searchAnimal(Animal animal) {
         for (int i = 0; i < nbrAnimal; i++) {
-            if (animals[i].equals(animalToFind)) {
+            if (animals[i].equals(animal)) {
                 return i;
             }
 
@@ -65,7 +67,26 @@ public class Zoo {
         }
         return false;
     }
+    public static Zoo comparerZoo(Zoo z1, Zoo z2) {
+        if (z1.nbrAnimal > z2.nbrAnimal) {
+            return z1;
+        } else {
+            return z2;
+        }
+    }
+
+
+    public static boolean isZooFull(Zoo zoo) {
+        return zoo.nbrAnimal >= zoo.NBR_CAGES;
+    }
+
+
+
+
 }
+
+
+
 
 
 
